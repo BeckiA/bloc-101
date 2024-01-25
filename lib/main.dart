@@ -1,20 +1,19 @@
-Stream<int> streamCounter(int max) async* {
-  for (int i = 0; i < max; i++) {
-    yield i; //This pushs the data inside the stream to get consumed
-  }
+import 'package:bloc/bloc.dart';
+
+// Creating Cubit
+
+class CounterCubit extends Cubit<int> {
+  // Cubit<int> This defines what state the cubit is going to manage!
+  // CounterCubit()
+  //     : super(
+  //           0); //The super manages the initalState internally by setting it to 0!
+  CounterCubit(int initalState)
+      : super(
+            initalState); // This is the external way of doing it using this we
+  //can make it so flexiblr to handle external values!
 }
 
-// This will consume the stream which get forwarded from the Stream Counter!
-Future<int> sumStream(Stream<int> stream) async {
-  int sum = 0;
-  await for (int val in stream) {
-    sum += val;
-  }
-  return sum;
-}
+// final cubitA = CounterCubit(0); //Inital State set to 0!
+// final cubitB = CounterCubit(10); //Inital state set to 10!
 
-void main(List<String> args) async {
-  Stream<int> stream = streamCounter(10);
-  int sum = await sumStream(stream);
-  print("The Sum inside the stream : $sum");
-}
+void main(List<String> args) async {}
